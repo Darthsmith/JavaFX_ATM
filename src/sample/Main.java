@@ -33,7 +33,6 @@ public class Main extends Application {
 
         window = primaryStage;
         GUI gui = new GUI();
-        Operations operationsMain = new Operations();
 
         //closing app
         primaryStage.setOnCloseRequest( e -> {

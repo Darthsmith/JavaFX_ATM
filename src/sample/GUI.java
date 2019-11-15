@@ -50,7 +50,7 @@ class GUI {
     Button backCheckBalanceButton;
     Button backDepositButton;
     private Label depositLabel;
-    private Operations operationsGUI = new Operations();
+    private Operations operations = new Operations();
 
     private void welcomeLabel() {
         this.welcomeLabel = new Label( "Welcome to the ATM" );
@@ -155,7 +155,7 @@ class GUI {
         GridPane.setConstraints( this.depositAmountTextField, 1,0 );
     }
     private void accountBalanceTextArea(){
-        this.accountBalanceTextArea = new TextArea("Your account balance at" + " is: " + operationsGUI.getBasic() + "zł");
+        this.accountBalanceTextArea = new TextArea("Your account balance at" + " is: " + operations.getBasic() + "zł");
     }
 
     private void addDepositButton(){
@@ -163,8 +163,8 @@ class GUI {
         this.addDepositButton.setLayoutX( 50 );
         this.addDepositButton.setLayoutY( 50 );
         this.addDepositButton.setOnAction( e -> {
-            operationsGUI.addDeposit(depositAmountTextField);
-            accountBalanceTextArea.setText( "Your account balance at" + " is: " + operationsGUI.getBasic() + "zł" );
+            operations.addDeposit(depositAmountTextField);
+            accountBalanceTextArea.setText( "Your account balance at" + " is: " + operations.getBasic() + "zł" );
         });
     }
 }
