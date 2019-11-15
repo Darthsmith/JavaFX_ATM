@@ -32,7 +32,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         window = primaryStage;
-        GUI gui = new GUI();
+
+        Operations operations = new Operations();
+        GUI gui = new GUI(operations);
 
         //closing app
         primaryStage.setOnCloseRequest( e -> {
@@ -65,6 +67,7 @@ public class Main extends Application {
         gui.checkBalanceButton.setOnAction(e -> primaryStage.setScene( checkBalanceScene ));
         gui.backCheckBalanceButton.setOnAction(e -> primaryStage.setScene( mainATMScene )
         );
+
 
 
 
