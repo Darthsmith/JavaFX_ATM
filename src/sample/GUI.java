@@ -14,6 +14,7 @@ import static javafx.application.Platform.exit;
 class GUI {
 
     GUI(Operations operations) {
+        this.operations = operations;
         this.welcomeLabel();
         this.welcomeButton();
         this.mainATMLabel();
@@ -31,7 +32,6 @@ class GUI {
         this.depositAmountTextField();
         this.accountBalanceTextArea();
         this.addDepositButton();
-        this.operations = operations;
     }
 
     Button addDepositButton;
