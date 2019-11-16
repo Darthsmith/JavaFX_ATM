@@ -24,9 +24,9 @@ public class Main extends Application {
     }
     private Stage window;
     private Scene welcomeScene, mainATMScene;
-    private Scene withdrawalScene, depositScene, checkBalanceScene,exitScene;
+    private Scene withdrawScene, depositScene, checkBalanceScene,exitScene;
     private Group welcomeLayout, mainLayout;
-    private Group checkBalanceLayout,depositLayout;
+    private Group checkBalanceLayout,depositLayout, withdrawLayout;
 
     @Override
     public void start(Stage primaryStage) {
@@ -54,12 +54,21 @@ public class Main extends Application {
         gui.welcomeButton.setOnAction(e -> primaryStage.setScene( mainATMScene ));
 
         //Deposit screen
-        depositLayout= new Group(gui.exitDepositButton,gui.depositAmountGrid,gui.backDepositButton,gui.addDepositButton);
+        depositLayout= new Group(gui.exitDepositButton,gui.depositAmountGrid,gui.backDepositButton,gui.depositConfirmButton);
         depositScene = new Scene(depositLayout,700,700);
         gui.depositButton.setOnAction(e -> primaryStage.setScene( depositScene ));
         gui.backDepositButton.setOnAction(e -> primaryStage.setScene( mainATMScene ));
 
         gui.depositAmountGrid.getChildren().addAll( gui.depositAmountLabel,gui.depositAmountTextField);
+
+        //withdraw screen
+        withdrawLayout = new Group(gui.exitWithdrawButton,gui.withdrawAmountGrid,gui.backWithdrawButton,gui.withdrawConfirmButton);
+        withdrawScene = new Scene(withdrawLayout,700,500);
+        gui.withdrawButton.setOnAction(e -> primaryStage.setScene( withdrawScene ));
+        gui.backWithdrawButton.setOnAction(e -> primaryStage.setScene( mainATMScene ));
+
+        gui.withdrawAmountGrid.getChildren().addAll( gui.withdrawAmountLabel,gui.withdrawAmountTextField);
+
 
         //checkBalance screen
         checkBalanceLayout = new Group(gui.accountBalanceTextArea,gui.exitCheckBalanceButton,gui.backCheckBalanceButton);
@@ -67,8 +76,6 @@ public class Main extends Application {
         gui.checkBalanceButton.setOnAction(e -> primaryStage.setScene( checkBalanceScene ));
         gui.backCheckBalanceButton.setOnAction(e -> primaryStage.setScene( mainATMScene )
         );
-
-
 
 
 

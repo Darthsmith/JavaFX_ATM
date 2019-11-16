@@ -18,27 +18,36 @@ class GUI {
         this.welcomeLabel();
         this.welcomeButton();
         this.mainATMLabel();
-        this.depositLabel();
         this.exitMainButton();
         this.checkBalanceButton();
         this.withdrawButton();
         this.depositButton();
         this.exitCheckBalanceButton();
         this.exitDepositButton();
+        this.exitWithdrawButton();
         this.backCheckBalanceButton();
         this.backDepositButton();
+        this.backWithdrawButton();
         this.depositAmountGrid();
         this.depositAmountLabel();
         this.depositAmountTextField();
+        this.withdrawAmountGrid();
+        this.withdrawAmountLabel();
+        this.withdrawAmountTextField();
         this.accountBalanceTextArea();
-        this.addDepositButton();
+        this.depositConfirmButton();
+        this.withdrawConfirmButton();
     }
 
-    Button addDepositButton;
+    Button depositConfirmButton;
+    Button withdrawConfirmButton;
     TextArea accountBalanceTextArea;
     TextField depositAmountTextField;
     Label depositAmountLabel;
     GridPane depositAmountGrid;
+    TextField withdrawAmountTextField;
+    Label withdrawAmountLabel;
+    GridPane withdrawAmountGrid;
     Label welcomeLabel;
     Button welcomeButton;
     Label mainATMLabel;
@@ -48,10 +57,11 @@ class GUI {
     Button withdrawButton;
     Button depositButton;
     Button exitDepositButton;
+    Button exitWithdrawButton;
     Button backCheckBalanceButton;
     Button backDepositButton;
+    Button backWithdrawButton;
 
-    private Label depositLabel;
     private Operations operations;
 
     private void welcomeLabel() {
@@ -87,10 +97,6 @@ class GUI {
         this.depositButton.setLayoutY( 160 );
     }
 
-    private void depositLabel() {
-        this.depositLabel = new Label( "Choose amount:" );
-
-    }
 
 
     private void checkBalanceButton() {
@@ -113,12 +119,24 @@ class GUI {
         this.exitDepositButton.setLayoutX( 650 );
         this.exitDepositButton.setLayoutY( 450 );
         exitDepositButton.setOnAction( e -> closeProgram());
+    }
 
+    private void exitWithdrawButton(){
+        this.exitWithdrawButton = new Button( "Exit" );
+        this.exitWithdrawButton.setLayoutX( 650 );
+        this.exitWithdrawButton.setLayoutY( 450 );
+        exitWithdrawButton.setOnAction( e -> closeProgram());
     }
     private void backDepositButton(){
         this.backDepositButton = new Button( "Return" );
         this.backDepositButton.setLayoutX( 50 );
         this.backDepositButton.setLayoutY( 450 );
+    }
+
+    private void backWithdrawButton(){
+        this.backWithdrawButton = new Button( "Return" );
+        this.backWithdrawButton.setLayoutX( 50 );
+        this.backWithdrawButton.setLayoutY( 450 );
     }
 
     private void exitCheckBalanceButton() {
@@ -147,26 +165,52 @@ class GUI {
         this.depositAmountGrid.setHgap( 8 );
     }
 
+    private void withdrawAmountGrid(){
+        this.withdrawAmountGrid = new GridPane();
+        this.withdrawAmountGrid.setPadding( new Insets( 10,10,10,10 ) );
+        this.withdrawAmountGrid.setVgap( 8 );
+        this.withdrawAmountGrid.setHgap( 8 );
+    }
+
     private void depositAmountLabel(){
-        this.depositAmountLabel = new Label("Input the deposit amount");
+        this.depositAmountLabel = new Label("How much money do you want to deposit?");
         GridPane.setConstraints( this.depositAmountLabel, 0,0 );
+    }
+    private void withdrawAmountLabel(){
+        this.withdrawAmountLabel = new Label("How much money do you want to withdraw?");
+        GridPane.setConstraints( this.withdrawAmountLabel, 0,0 );
     }
 
     private void depositAmountTextField(){
         this.depositAmountTextField = new TextField(  );
         GridPane.setConstraints( this.depositAmountTextField, 1,0 );
     }
+
+    private void withdrawAmountTextField(){
+        this.withdrawAmountTextField = new TextField(  );
+        GridPane.setConstraints( this.withdrawAmountTextField, 1,0 );
+    }
     private void accountBalanceTextArea(){
-        this.accountBalanceTextArea = new TextArea("Your account balance at" + " is: " + operations.getBasic() + "zł");
+        this.accountBalanceTextArea = new TextArea("Your account balance at" + " is: " + operations.getMoney() + "zł");
     }
 
-    private void addDepositButton(){
-        this.addDepositButton = new Button("Click me!");
-        this.addDepositButton.setLayoutX( 50 );
-        this.addDepositButton.setLayoutY( 50 );
-        this.addDepositButton.setOnAction( e -> {
-            operations.addDeposit(depositAmountTextField);
-            accountBalanceTextArea.setText( "Your account balance at" + " is: " + operations.getBasic() + "zł" );
+    private void depositConfirmButton(){
+        this.depositConfirmButton = new Button("Click me!");
+        this.depositConfirmButton.setLayoutX( 50 );
+        this.depositConfirmButton.setLayoutY( 50 );
+        this.depositConfirmButton.setOnAction( e -> {
+            operations.depositMoney(depositAmountTextField);
+            accountBalanceTextArea.setText( "Your account balance at" + " is: " + operations.getMoney() + "zł" );
+        });
+    }
+
+    private void withdrawConfirmButton(){
+        this.withdrawConfirmButton = new Button("Click me!");
+        this.withdrawConfirmButton.setLayoutX( 50 );
+        this.withdrawConfirmButton.setLayoutY( 50 );
+        this.withdrawConfirmButton.setOnAction( e -> {
+            operations.withdrawMoney(withdrawAmountTextField);
+            accountBalanceTextArea.setText( "Your account balance at" + " is: " + operations.getMoney() + "zł" );
         });
     }
 }

@@ -8,11 +8,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AlertBox {
+class AlertBox {
 
-    public static void display(String title, String message){
+    static void display(String title, String message){
         Stage window = new Stage();
-        window.initModality( Modality.APPLICATION_MODAL ); // dopoki nie ogarne tego okna nie moge uzywac innych
+        window.initModality( Modality.APPLICATION_MODAL );
         window.setTitle(title);
         window.setMinWidth( 250 );
 
@@ -29,9 +29,6 @@ public class AlertBox {
         window.setScene(scene);
         window.showAndWait();
 
-
-        // w mainie
-        // button.setOnAction ( e -> AlertBox.display("string title","string message")
 
 
     }

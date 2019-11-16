@@ -8,32 +8,49 @@ import javafx.stage.Stage;
 
 class Operations {
     Operations() {
-        this.setAccountBalance( basic );
+        this.addMoney( money );
+        this.takeMoney( money );
     }
 
-    private int basic;
+    private int money;
 
 
-    int getBasic() {
-        return basic;
+    int getMoney() {
+        return money;
     }
 
-    private void setBasic(int basic) {
-        this.basic = basic;
+    private void setMoney(int money) {
+        this.money = money;
     }
 
-    private int setAccountBalance(int accountBalance) {
-        setBasic( basic+accountBalance );
-        return basic;
+    private int addMoney(int accountBalance) {
+        setMoney( money+accountBalance );
+        return money;
+    }
+    private int takeMoney(int accountBalance) {
+        if(accountBalance>money) {
+            AlertBox.display( "Error", "You don't have enough money for this operation!"  );
+        } else {
+            setMoney( money - accountBalance );
+        }
+        return money;
     }
 
 
-    void addDeposit(TextField input){
+    void depositMoney(TextField input){
         try{
             int deposit = Integer.parseInt(input.getText());
-            setAccountBalance( deposit );
+            addMoney( deposit );
         }catch(NumberFormatException e){
-            System.out.println("Zły input");
+            System.out.println("Wrong input");
+        }
+    }
+    void withdrawMoney(TextField input){
+        try{
+            int withdraw = Integer.parseInt(input.getText());
+            takeMoney( withdraw );
+        }catch(NumberFormatException e){
+            System.out.println("Wrong input");
         }
     }
 
